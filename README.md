@@ -31,6 +31,23 @@
 + package.json : package-lock.jsonと似たような内容. こちらは開発者が操作する.
 + git cloneしてきた場合は, package.jsonやpackage-lock.jsonは既に存在するが, node_modulesがまだ存在しないという状態になる. この場合は, 引数なしの`$npm install`コマンドを叩くことで, node_modulesが再度生成される.
 
+## tsconfig.jsonの準備
++ TypeScriptコンパイラに対する設定ファイル
++ TypeScriptコンパイラへのオプション追加は, コマンドラインに直叩きする方法とtsconfig.jsonに記述する方法の2種類
++ 積極的にtsconfig.jsonを利用しよう
++ `npx`(旧)コマンドまたは`npm exec`コマンドは, node_modules内にインストールされたコマンドラインプログラムを実行してくれるツール
++ Node.jsの種類 : 旧型 CommonJS, 新型 : NextJS(ES Modules)
+1. `$ npx tsc --init`
+2. `"target": "es2016"` -> `"target": "ex2020"`に変更
+3. `"module": "commonjs"` -> `"module": "exnext"`に変更(Next.js)
+4. `// "moduleResolution: "none10"` -> `"moduleResolution": "node10"` アンコメント
+5. `// "outDir": "./"` -> `"outDir": ".\your\path\to"` *.jsファイルの出力先を指定
+6. インクルードオプションの追加, tsconfig.jsonの末尾に追加 `"include": ["./src/**/*.ts]`
+
+## TypeScriptのコンパイル
++ `npx tsc`
++ `npx tsc --watch`
+
 ## 目次
 
 ### 第1章　イントロダクション
