@@ -1,2 +1,10 @@
+
+
+# サンプルコード
 ProTypeScript_SampleCode/
+
+# NodeJSのモジュール群
 node_modules/
+
+# JavaScript(成果物)
+dist/
