@@ -10,7 +10,8 @@
 + 書籍　https://gihyo.jp/book/2022/978-4-297-12916-3
 + サポートページ https://gihyo.jp/book/2022/978-4-297-12916-3/support
 + ソースコード1 https://github.com/gihyo-book/ts-nextbook-app
-+ https://github.com/gihyo-book/ts-nextbook-json
++ ソースコード2 https://github.com/gihyo-book/ts-nextbook-json
++ 正誤表 https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5DsuAjcbHuC38u3v4-rfnsmDthgSY4wrZiPvYNyAeuTYxLTzGUWiEgCD8vnv--w/pubhtml
 
 ## Version
 + Node.js v18.16.1
@@ -358,3 +359,245 @@
 ### 目次
 
 
+#### 1 Next.jsとTypeScriptによるモダン開発
+1.1 Next.jsとTypeScript<br>
+1.2 フロントエンド開発の変遷<br>
+1.2.1　JavaScript黎明期とjQueryの人気<br>
+1.2.2　SPAの登場とMVC/MVVMフレームワーク<br>
+column.　SPA普及の裏で貢献したHistory API<br>
+1.2.3　Reactの登場とコンポーネント指向・状態管理<br>
+1.2.4　Node.jsの躍進<br>
+column.　CommonJSとESモジュール<br>
+column.　Deno<br>
+1.2.5　AltJSの流行とTypeScriptの定番化<br>
+1.2.6　ビルドツールとタスクランナー<br>
+1.2.7　SSR/SSGの必要性<br>
+1.2.8　Next.jsの登場と受容<br>
+1.3 モダンフロントエンド開発の設計思想<br>
+1.3.1　フロントエンド技術の複雑化<br>
+1.3.2　コンポーネント指向とは<br>
+column.　FluxのライブラリRedux<br>
+1.3.3　Next.jsがなぜ必要になってきているか<br>
+column.　Vue.jsとNuxt.js<br>
+column.　Next.jsの対応ブラウザ<br>
+column.　Reactコンポーネントの復元 - Hydration<br>
+
+#### 2 TypeScriptの基礎
+2.1 TypeScriptの基礎知識<br>
+2.1.1　TypeScript登場の背景<br>
+2.1.2　TypeScriptとVisual Studio Code<br>
+2.1.3　TypeScriptとJavaScriptの違い<br>
+2.1.4　TypeScriptコマンドラインツールによるコンパイル<br>
+2.2 型の定義<br>
+2.2.1　変数<br>
+2.2.2　プリミティブ型<br>
+2.2.3　配列<br>
+2.2.4　オブジェクト型<br>
+2.2.5　any<br>
+2.2.6　関数<br>
+2.3 基本的な型の機能<br>
+2.3.1　型推論<br>
+2.3.2　型アサーション<br>
+2.3.3　型エイリアス<br>
+2.3.4　インタフェース<br>
+2.3.5　クラス<br>
+2.4 実際の開発で重要な型<br>
+2.4.1　Enum型<br>
+2.4.2　ジェネリック型<br>
+2.4.3　Union型とIntersection型<br>
+2.4.4　リテラル型<br>
+2.4.5　never型<br>
+2.5 TypeScriptのテクニック<br>
+2.5.1　Optional Chaining<br>
+2.5.2　Non-null Assertion Operator<br>
+2.5.3　型ガード<br>
+2.5.4　keyofオペレーター<br>
+2.5.5　インデックス型<br>
+2.5.6　readonly<br>
+2.5.7　unknown<br>
+2.5.8　非同期のAsync/Await<br>
+2.5.9　型定義ファイル<br>
+2.6 TypeScriptの開発時設定<br>
+2.6.1　tsconfig.json<br>
+2.6.2　Prettier<br>
+2.6.3　ESLint<br>
+2.6.4　コンパイルオプション<br>
+column.　コーディングスタイルガイド<br>
+column.　TypeScriptのコンパイラ<br>
+column.　import type<br>
+
+#### 3 React/Next.jsの基礎
+3.1 React入門<br>
+3.1.1　Reactの始め方<br>
+3.1.2　Reactの基本<br>
+3.1.3　Reactのコンポーネントを作成する<br>
+3.2 Reactにおけるコンポーネント<br>
+3.2.1　React要素<br>
+3.2.2　コンポーネント（Reactコンポーネント）<br>
+column.　関数コンポーネントとクラスコンポーネント<br>
+3.3 Reactにおける型<br>
+column.　FCとVFC<br>
+3.4 Context（コンテキスト）<br>
+3.5 React Hooks（フック）<br>
+3.5.1　useStateとuseReducer―状態のフック<br>
+3.5.2　useCallbackとuseMemo―メモ化のフック<br>
+3.5.3　useEffectとuseLayoutEffect―副作用のフック<br>
+column.　React18におけるuseEffect・useLayoutEffectの挙動<br>
+3.5.4　useContext―Contextのためのフック<br>
+3.5.5　useRefとuseImperativeHandle―refのフック<br>
+3.5.6　カスタムフックとuseDebugValue<br>
+3.6 Next.js入門<br>
+3.6.1　プロジェクトのセットアップ<br>
+3.6.2　プロジェクトの基本的な構成<br>
+3.7 Next.jsのレンダリング手法<br>
+3.7.1　静的サイト生成（SSG）<br>
+3.7.2　クライアントサイドレンダリング（CSR）<br>
+3.7.3　サーバーサイドレンダリング（SSR）<br>
+3.7.4　インクリメンタル静的再生成（ISR）<br>
+3.8 ページとレンダリング手法<br>
+3.8.1　Next.jsのページとデータ取得<br>
+3.8.2　SSGによるページの実装<br>
+3.8.3　getStaticPropsを用いたSSGによるページの実装<br>
+3.8.4　getStaticPathsを使った複数ページのSSG<br>
+column.　useRouter―ルーティングのためのフック<br>
+3.8.5　SSRによるページの実装<br>
+3.8.6　ISRによるページの実装<br>
+3.9 Next.jsの機能<br>
+3.9.1　リンク<br>
+3.9.2　画像の表示<br>
+3.9.3　APIルート<br>
+3.9.4　環境変数/コンフィグ<br>
+3.9.5　React/Next.jsとライブラリの互換性<br>
+
+#### 4 コンポーネント開発
+4.1 Atomic Designによるコンポーネント設計<br>
+4.1.1　Presentational ComponentとContainer Component<br>
+4.1.2　Atomic Design<br>
+4.1.3　Atoms<br>
+4.1.4　Molecules<br>
+4.1.5　Organisms<br>
+4.1.6　Templates<br>
+4.1.7　Pages<br>
+4.2 styled-componentsによるスタイル実装<br>
+4.2.1　styled-componentsをNext.jsに導入<br>
+4.2.2　styled-componentsを用いたコンポーネント実装<br>
+4.3 Storybookを使ったコンポーネント管理<br>
+4.3.1　Storybookの基本的な使い方<br>
+4.3.2　Actionを使用したコールバックのハンドリング<br>
+4.3.3　Controlsタブを使ったpropsの制御<br>
+4.3.4　アドオン<br>
+4.4 コンポーネントのユニットテスト<br>
+4.4.1　Reactにおけるユニットテスト<br>
+4.4.2　テスト環境構築<br>
+4.4.3　React Testing Libraryによるコンポーネントのユニットテスト<br>
+4.4.4　非同期コンポーネントのユニットテスト<br>
+column.　Next.js 11以前のstyled-components/jest導入<br>
+
+#### 5 アプリケーション開発1～設計・環境設定～
+5.1 本章で開発するアプリケーション<br>
+5.1.1　アプリケーションの仕様<br>
+5.1.2　アプリケーションのアーキテクチャ<br>
+5.2 開発環境構築<br>
+5.2.1　Next.jsのプロジェクト作成<br>
+5.2.2　styled-componentsの設定<br>
+5.2.3　ESLintの設定<br>
+5.2.4　Storybookの設定<br>
+5.2.5　React Hook Formの導入<br>
+5.2.6　SWRの導入<br>
+5.2.7　React Content Loaderの導入<br>
+5.2.8　Material Iconsの導入<br>
+5.2.9　環境変数<br>
+5.2.10　テスト環境構築<br>
+5.2.11　JSON Serverの設定<br>
+5.2.12　CSS in JSライブラリ<br>
+
+#### 6 アプリケーション開発2～実装～
+6.1 アプリケーションアーキテクチャと全体の実装の流れ<br>
+6.2 APIクライアントの実装<br>
+6.2.1　fetcher関数<br>
+6.2.2　APIクライアントの関数<br>
+6.2.3　アプリケーションで使用されるデータの型<br>
+6.2.4　開発環境のためのAPIリクエストプロキシ<br>
+6.3 コンポーネント実装の準備<br>
+6.3.1　レスポンシブデザインに対応したコンポーネント<br>
+6.3.2　Wrapperコンポーネントの実装<br>
+6.4 Atomic Designによるコンポーネント設計の実施<br>
+6.4.1　Atomic Designに沿ってコンポーネントを分割する<br>
+6.5 Atomsの実装<br>
+6.5.1　ボタン―Button<br>
+6.5.2　テキスト―Text<br>
+6.5.3　シェイプイメージ―ShapeImage<br>
+6.5.4　テキストインプット―Input<br>
+6.5.5　テキストエリア―TextArea<br>
+6.5.6　バッジ―Badge<br>
+6.6 Moleculesの実装<br>
+6.6.1　チェックボックス―Checkbox<br>
+6.6.2　ドロップダウン―Dropdown<br>
+6.6.3　ドロップゾーン―Dropzone<br>
+6.6.4　イメージプレビュー―ImagePreview<br>
+6.7 Organismsの実装<br>
+6.7.1　カート商品―CartProduct<br>
+6.7.2　グローバルスピナー―GlobalSpinner<br>
+6.7.3　ヘッダー―Header<br>
+6.7.4　商品カード―ProductCard<br>
+column.　データURIスキーム<br>
+6.7.5　商品投稿フォーム―ProductForm<br>
+6.7.6　サインインフォーム―SigninForm<br>
+6.7.7　ユーザープロファイル―UserProfile<br>
+6.8 Templatesの実装<br>
+6.8.1　レイアウト―Layout<br>
+6.9 ページの設計と実装<br>
+6.9.1　サインインページ<br>
+6.9.2　ユーザーページ<br>
+6.9.3　トップページ<br>
+6.9.4　検索ページ<br>
+6.9.5　商品詳細ページ<br>
+6.9.6　買い物カートページ<br>
+6.9.7　出品ページ<br>
+6.10 コンポーネントのユニットテストの実装<br>
+6.10.1　ボタンのユニットテスト<br>
+6.10.2　ドロップダウンのユニットテスト<br>
+6.10.3　ドロップゾーンのユニットテスト<br>
+6.10.4　ヘッダーのユニットテスト<br>
+6.10.5　サインインフォームのテスト<br>
+6.10.6　商品投稿フォームのテスト<br>
+
+#### 7 アプリケーション開発3～リリースと改善～
+7.1 デプロイとアプリケーション全体のシステムアーキテクチャ<br>
+7.2 Heroku<br>
+7.3 Vercel<br>
+7.3.1　Vercelへのアプリケーションのデプロイ<br>
+7.4 ロギング<br>
+column.　ログレベル<br>
+7.5 SEO<br>
+7.5.1　メタタグ<br>
+7.5.2　パンくずリスト<br>
+7.5.3　sitemap<br>
+7.5.4　robots.txt<br>
+7.6 アクセシビリティ<br>
+7.6.1　セマンティック<br>
+7.6.2　補助テキスト<br>
+7.6.3　WAI-ARIA<br>
+7.7 セキュリティ<br>
+7.7.1　フロントエンド開発における脆弱性とその対策<br>
+column.　CSRF<br>
+column.　Permissions-Policy<br>
+column.　X-XSS-Protectionヘッダー<br>
+column.　セキュリティテスト<br>
+column.　Next.jsのバックエンドの考え方<br>
+column.　Next.jsの認証<br>
+
+#### Appendix Next.jsのさらなる活用
+A.1 決済ツールStripe<br>
+A.1.1　Stripeのセットアップ<br>
+A.1.2　Stripe APIの利用<br>
+A.1.3　Stripeの公式ドキュメント<br>
+A.2 StoryShots―UIスナップショットテスト<br>
+A.2.1　StoryShotsとは<br>
+A.2.2　storyshots-puppeteer―スナップショットイメージによるUIテスト<br>
+A.3 AWS AmplifyへのNext.jsアプリケーションのデプロイ<br>
+A.3.1　Next.jsアプリケーションのAWS Amplifyへのデプロイ<br>
+A.3.2　SSGを使用したNext.jsアプリケーションのAWS Amplifyへのデプロイ<br>
+A.4 国際化ツールi18n<br>
+A.4.1　パスによる言語ルーティング<br>
+A.4.2　next-i18nを使ったテキストのi18n対応<br>
