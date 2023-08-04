@@ -53,9 +53,16 @@
 6. インクルードオプションの追加, tsconfig.jsonの末尾に追加 `"include": ["./src/**/*.ts]`
 
 ## TypeScriptのコンパイル
-+ `npx tsc`
-+ `npx tsc --watch`
++ `npx tsc --strictNullChecks`
++ `npx tsc --strictNullChecks --watch`
 
+## コンパイルオプション
+| オプション | 説明 |
+| :-- | :-- |
+| `--strictNullChecks` | 型チェックを厳密にする. e.g. エラー `nan == NaN` -> OK `Number.isNan(nan)` |
+
+## TS Playground(REPLツール)
++ https://www.typescriptlang.org/play
 
 ## プロを目指す人のためのTypeScript入門
 ### 目次

@@ -37,7 +37,7 @@
     console.log(3 > NaN); // false
     console.log(3 < NaN); // false
     const nan : number = NaN;
-    console.log(nan === NaN); // false
+    console.log(Number.isNaN(nan)); // false
 
 
     // 変数xのNaN判定
