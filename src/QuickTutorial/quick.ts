@@ -56,7 +56,15 @@
     }
 }
 
-// any
+// any　基本使わない
 {
+    let user : any = { firstName: 'Shinichi' };
+    // 以下のコードでいずれもエラーがでない
+    user.hello(); // runtime error
+    user();
+    user.age = 100;
+    user = 'hello';
 
+    // 他の型への代入も許容
+    const n : number = user;
 }
