@@ -28,7 +28,7 @@ const Parent = (): JSX.Element => {
     )
 }
 
-export default Parent;
+// export default Parent;
 
 
 // Context: Provider-Consumerモデル
@@ -71,3 +71,6 @@ const Page = () => {
 }
 
 export default Page;
+
+
+

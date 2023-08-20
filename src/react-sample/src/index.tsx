@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 // components
 import Hello from './components/Hello';
 import Parent from './components/ContainerSample';
+import Counter from './components/ContainerSample';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,7 +17,8 @@ root.render(
     {/* AppからHelloに置き換える */}
     {/* <App /> */}
     {/* <Hello /> */}
-    <Parent />
+    {/* <Parent /> */}
+    <Counter />
   </React.StrictMode>
   // <h1>見出し</h1>
 );
