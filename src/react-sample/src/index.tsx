@@ -6,8 +6,10 @@ import reportWebVitals from './reportWebVitals';
 
 // components
 import Hello from './components/Hello';
-import Parent from './components/ContainerSample';
-import Counter from './components/ContainerSample';
+import Parent from './components/ContextProviderConsumer';
+import Counter1 from './components/Hook1_useState';
+import Counter2 from './components/Hook2_useReducer';
+import { ParentOfMemoComp } from './components/Memo';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,7 +20,9 @@ root.render(
     {/* <App /> */}
     {/* <Hello /> */}
     {/* <Parent /> */}
-    <Counter />
+    {/* <Counter1 initialValue={1} /> */}
+    {/* <Counter2 initialValue={2} /> */}
+    <ParentOfMemoComp></ParentOfMemoComp>
   </React.StrictMode>
   // <h1>見出し</h1>
 );

@@ -1,4 +1,4 @@
-// フックの活用 useState
+// フックの活用1 useState
 
 import { useState } from 'react'
 
@@ -6,7 +6,7 @@ type CounterProps = {
     initialValue: number
 };
 
-const Counter = (props: CounterProps) => {
+const Counter1 = (props: CounterProps): JSX.Element => {
     const { initialValue } = props;
     // カウントを保持する1つの状態をuseState()で宣言する.
     // 引数には初期値を指定する.
@@ -23,4 +23,4 @@ const Counter = (props: CounterProps) => {
     );
 }
 
-export default Counter;
+export default Counter1;

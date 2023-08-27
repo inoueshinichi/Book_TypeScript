@@ -10,7 +10,7 @@
 import React from 'react'
 
 // 名前を入力するためのテキストボックスを返す
-const Name = () => {
+const Name = (): JSX.Element => {
     // input要素のonchangeイベントに対するコールバック関数を定義する
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // 入力されたテキストをコンソールに表示する

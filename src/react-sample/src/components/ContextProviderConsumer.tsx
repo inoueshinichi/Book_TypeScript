@@ -37,7 +37,7 @@ const Parent = (): JSX.Element => {
 const TitleContext = React.createContext('');
 
 // Titleコンポーネントの中でContextの値を参照する
-const Title = () => {
+const Title = (): JSX.Element => {
     // Consumerを使って, Contextの値を参照する
     return (
         <TitleContext.Consumer>
@@ -49,7 +49,7 @@ const Title = () => {
     );
 }
 
-const Header = () => {
+const Header = (): JSX.Element => {
     return (
         <div>
             {/* HeaderからTitleへは何もデータを渡さない */}
@@ -59,7 +59,7 @@ const Header = () => {
 }
 
 // Pageコンポーネントの中でContextに値を渡す
-const Page = () => {
+const Page = (): JSX.Element => {
     const title = 'React Book';
 
     // Providerを使ってContextに値をセットする

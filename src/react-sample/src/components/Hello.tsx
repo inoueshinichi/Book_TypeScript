@@ -1,5 +1,5 @@
 // Helloはクリックするとアラートを出すテキストを返す
-const Hello = () => {
+const Hello = (): JSX.Element => {
     // クリック時に呼ばれる関数
     const onClick = () => {
         // アラートを出す
