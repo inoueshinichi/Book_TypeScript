@@ -17,7 +17,7 @@ type FizzProps = {
 // Fizzは通常の関数コンポーネント　
 // isFizzがtrueの場合, Fizzと表示し, それ以外は何も表示しない
 // isFizzの変化に関わらず, 親が再描画されるとFizzも再描画される(無駄)
-const Fizz = (props: FizzProps) => {
+const Fizz = (props: FizzProps): JSX.Element => {
     const { isFizz } = props;
     console.log(`Fizzが再描画されました. isFizz=${isFizz}`);
     return (
@@ -44,7 +44,7 @@ const Buzz = memo<BuzzProps>((props): JSX.Element => {
 })
 
 // この形式でexportしたときは, import { ParentOfMemComp } from ... で読み込む.
-export const ParentOfMemoComp = (): JSX.Element => {
+export const ParentOfMemoComp1 = (): JSX.Element => {
     const [count, setCount] = useState(1);
     const isFizz = count % 3 === 0;
     const isBuzz = count % 5 === 0;

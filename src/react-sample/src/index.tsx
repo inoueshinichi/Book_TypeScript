@@ -9,21 +9,30 @@ import Hello from './components/Hello';
 import Parent from './components/ContextProviderConsumer';
 import Counter1 from './components/Hook1_useState';
 import Counter2 from './components/Hook2_useReducer';
-import { ParentOfMemoComp } from './components/Memo';
+import { ParentOfMemoComp1 } from './components/Hook3_Memo1';
+import { ParentOfMemoComp2 } from './components/Hook3_Memo2';
+import { ParentOfMemoComp3 } from './components/Hook3_Memo_useCallback';
+import { UseMemoSample } from './components/Hook3_Memo_useMemo';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+// root.render()に記述するサンプル群
+{/* AppからHelloに置き換える */ }
+{/* <App /> */ }
+{/* <Hello /> */ }
+{/* <Parent /> */ }
+{/* <Counter1 initialValue={1} /> */ }
+{/* <Counter2 initialValue={2} /> */ }
+
 root.render(
-  <React.StrictMode>
-    {/* AppからHelloに置き換える */}
-    {/* <App /> */}
-    {/* <Hello /> */}
-    {/* <Parent /> */}
-    {/* <Counter1 initialValue={1} /> */}
-    {/* <Counter2 initialValue={2} /> */}
-    <ParentOfMemoComp></ParentOfMemoComp>
-  </React.StrictMode>
+  // <React.StrictMode>
+    // <ParentOfMemoComp1 />
+    // <ParentOfMemoComp2 />
+    // <ParentOfMemoComp3 />
+    <UseMemoSample />
+  // </React.StrictMode>
   // <h1>見出し</h1>
 );
 
