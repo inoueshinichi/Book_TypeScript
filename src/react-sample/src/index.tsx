@@ -13,6 +13,8 @@ import { ParentOfMemoComp1 } from './components/Hook3_Memo1';
 import { ParentOfMemoComp2 } from './components/Hook3_Memo2';
 import { ParentOfMemoComp3 } from './components/Hook3_Memo_useCallback';
 import { UseMemoSample } from './components/Hook3_Memo_useMemo';
+import { Clock } from './components/Hook4_useEffect';
+import { UseContextParent } from './components/Hook4_useContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -31,7 +33,9 @@ root.render(
     // <ParentOfMemoComp1 />
     // <ParentOfMemoComp2 />
     // <ParentOfMemoComp3 />
-    <UseMemoSample />
+    // <UseMemoSample />
+    // <Clock />
+    <UseContextParent />
   // </React.StrictMode>
   // <h1>見出し</h1>
 );

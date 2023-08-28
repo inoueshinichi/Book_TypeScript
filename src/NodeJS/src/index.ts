@@ -1,4 +1,5 @@
 import { access } from "node:fs/promises";
+// import { readFile, writeFile, appendFile } from "node:fs";
 import * as fs from "node:fs/promises";
 import { existsSync, rmSync, appendFileSync } from "node:fs";
 import { promisify } from "node:util";
@@ -291,6 +292,28 @@ import { promisify } from "node:util";
 
     // Async/Await
     {
-        
+        // read/write/chmod
+        {
+            // async関数はPromise<T>を戻り値にする
+            // return Promise.resolve(T)
+            const main = async (): Promise<string> => {
+                const backupFile = dataDir + `async_await_text-${Date.now()}`;
+                const data = await fs.readFile(dataDir + `text.txt`);
+                await fs.writeFile(backupFile, data);
+                await fs.chmod(backupFile, 0o400); // 読み取り専用
+                return "async return value";
+            };
+
+            // 実行
+            main().then((data: string): void => {
+                // Promise成功時 Promise.resolve(T) -> FulFilled状態
+                console.log(data);
+            }).catch((err: string): void => {
+                // 例外もしくはPromise.reject(T) -> Rejected状態
+                console.error(err);
+            });
+
+            console.log("done 6");
+        }
     }
 }

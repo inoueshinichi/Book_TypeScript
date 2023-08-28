@@ -8,3 +8,6 @@ node_modules/
 
 # JavaScript(成果物)
 dist/
+
+# テスト用データ置き場
+data/
