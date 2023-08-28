@@ -1,4 +1,7 @@
-import { access } from "fs";
+import { access } from "node:fs/promises";
+import * as fs from "node:fs/promises";
+import { existsSync, rmSync, appendFileSync } from "node:fs";
+import { promisify } from "node:util";
 
 {
     console.log('hello Node.js');
@@ -167,3 +170,127 @@ import { access } from "fs";
     old_p.printName();
 }
 
+// 非同期処理 (Core API)
+{
+    const dataDir: string = "/Users/inoueshinichi/Desktop/MyGithub/Book_TypeScript/data/";
+
+    // 1. callback
+    {
+        console.log('A');
+
+        // エラーファーストコールバック方式
+        // readFile(__filename, (err, data) => {
+        //     console.log('B', data);
+        // });
+
+        // Promise方式
+        fs.readFile(dataDir + "text.txt").then(file => {
+            console.log(file);
+        }).catch(err => {
+            console.error(err);
+        });
+
+        console.log('C');
+
+        // 1. ファイルの読み込み
+        // 2. ファイル名をフォーマットして別名で書き込み
+        // 3. アクセス権限をreadonlyに変更
+        const backupFile = dataDir + `text-${Date.now()}`;
+
+        // コールバックのネスト地獄なのでこの記述はダメ.
+        fs.readFile(dataDir + "text.txt").then(file => {
+            console.log(`read file: ${file}`);
+            fs.writeFile(backupFile, file).then(file => {
+                fs.chmod(backupFile, 0o400).then(file => {
+                    console.log('done 2');
+                });
+            }).catch(err => {
+                console.log(`Failed to writeFile: ${err}`);
+            })
+        }).catch(err => {
+            console.log(`Failed to readFile: ${err}`);
+        });
+
+        console.log("done 1");
+    }
+
+    // 単純なコールバックでは, 非同期処理の順序は保証されない
+    {
+        // ファイルが存在すれば同期的にファイル削除
+        if (existsSync(dataDir + "unsequence_data.txt"))
+        {
+            rmSync(dataDir + "unsequence_data.txt");
+        }
+
+        // 非同期で書き込み
+        for (let i = 0; i < 100; i++) {
+            const recordText = `write: ${i}\n`;
+            fs.appendFile(dataDir + "unsequence_data.txt", recordText).catch(err => {
+                console.error(`Failed to appendFile: ${err}`);
+            });
+        }
+        console.log("done 3");
+
+        // ファイルが存在すれば同期的にファイル削除
+        if (existsSync(dataDir + "sequence_data.txt"))
+        {
+            rmSync(dataDir + "sequence_data.txt");
+        }
+
+        // 同期的に書き込み
+        for (let i = 0; i < 100; i++) {
+            const recordText = `write: ${i}\n`;
+            appendFileSync(dataDir + "sequnce_data.txt", recordText);
+        }
+
+        console.log('done 4');
+    }
+
+    // Promise
+    {
+        const promiseFunc = (x: any): Promise<any> => {
+            // 型定義
+            type Executor = (resolve: (value: any) => void, reject: (reason?: any) => void) => void;
+
+            // 非同期実行処理
+            const executor: Executor = (resolve, reject) => {
+                // 非同期で行う処理をここに記述
+                const name: string = "Shinichi Inoue";
+                console.log(`${name} on executor in promise`);
+
+                // 状態の決定(FulFilled状態:成功, Rejected状態:失敗)
+                if (typeof x === `string`) {
+                    resolve(name); // 成功
+                } else {
+                    reject(new Error("Promise reject error.")); // 失敗
+                }
+            };
+            
+            return new Promise(executor);
+        };
+
+        const myPromise: Promise<any> = promiseFunc('string type');
+
+        myPromise.then((value: any): void => {
+            console.log(`成功: ${value}`);
+        }).catch((err: any): void => {
+            console.log(`失敗`);
+        });
+
+        console.log("done 5");
+    }
+
+    // Promise化
+    {
+        const my_readFileAsync = promisify(fs.readFile);
+        const my_writeFileAsync = promisify(fs.writeFile);
+        const my_chmodAsync = promisify(fs.chmod);
+
+        // 最新のNode.jsでは 標準化された(Promiseを返す)非同期関数が利用できる.
+    }
+
+    // Async/Await
+    {
+        
+    }
+}
