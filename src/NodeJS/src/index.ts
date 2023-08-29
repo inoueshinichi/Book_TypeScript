@@ -3,6 +3,9 @@ import { access } from "node:fs/promises";
 import * as fs from "node:fs/promises";
 import { existsSync, rmSync, appendFileSync } from "node:fs";
 import { promisify } from "node:util";
+import { request } from "undici"; // HTTP (3rd party)
+import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events"; // Stream型
+
 
 {
     console.log('hello Node.js');
@@ -315,5 +318,80 @@ import { promisify } from "node:util";
 
             console.log("done 6");
         }
+    }
+
+    // Async/AwaitとPromise.allによるタスクの並行処理(シングルスレッド)
+    {
+        const task = async () => {
+            const resArray = await Promise.all([
+                request('https://www.yahoo.co.jp/'),
+                request('https://shopping.yahoo.co.jp/'),
+                request('https://actions.yahoo.co.jp/')
+            ]);
+
+            for (const res of resArray) {
+                // Promiseとawait組み合わせ可能
+                const body = await res.body.text();
+                const title = body.match(/<title>(.*)<\/title>/g);
+                console.log(title);
+            }
+
+            return "[Done] request";
+        };
+
+        task()
+            .then((data) => console.log(data))
+            .catch((err) => console.error(err));
+
+        console.log("done 7");
+    }
+}
+
+
+// イベント駆動型非同期フロー制御(ストリーム型)
+// EventEmitter/Stream
+// 全体をチャンク毎に分解したイベント毎にコールバック関数が何度も呼ばれる
+// 1. チャンクごとのイベントに対するコールバック関数を設定する.
+// 2. 全体が終了したときの終了イベントに対するコールバック関数を設定する.
+// 3. 例外が発生したときのイベントに対するコールバック関数を設定する.
+{
+    // 基底クラス EventEmitter
+    // ベース派生クラス Stream extends EventEmitter
+    // データの書き込み専用派生クラス Writable extends Stream
+    // データの読み込み専用派生クラス Readable extends Stream
+    // 書き込み/読み込みの両刀派生クラス Duplex extends Writable, Readable
+    // Duplexを継承し, 読み書きしたデータに対して変換処理を施す派生クラス Transform extends Duplex
+
+    // Writable : e.g. fs.createWriteStream
+    // Readable : e.g. fs.createReadStream
+    // Duplex : e.g. net.Socket
+    // Transform : e.g. zlib.createDeflate
+
+    // EventEmitterクラス
+    {
+        // EventEmitterクラスを継承して独自のイベントを扱うクラス
+        class MyEmitter extends EventEmitter {}
+
+        const myEmitter = new MyEmitter();
+
+        // my_eventという名前のeventを受け取るリスナーを設定
+        myEmitter.on('my_event', (data) => {
+            console.log('on my_event:', data);
+        });
+
+        // my_eventの発行
+        myEmitter.emit('my_event', 'one');
+
+        // エラーハンドリングは必須
+        myEmitter.on('error', (err) => {
+            console.error(err);
+        });
+
+        setTimeout(() => {
+            // my_eventの発行
+            myEmitter.emit('my_event', 'two');
+        }, 1000);
+
+        console.log("done 8");
     }
 }
