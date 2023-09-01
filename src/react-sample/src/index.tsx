@@ -15,6 +15,11 @@ import { ParentOfMemoComp3 } from './components/Hook3_Memo_useCallback';
 import { UseMemoSample } from './components/Hook3_Memo_useMemo';
 import { Clock } from './components/Hook4_useEffect';
 import { UseContextParent } from './components/Hook4_useContext';
+import { ImageUploader } from './components/Hook5_useRef';
+import { ImperativeParent } from './components/Hook6_useImperativeHandle';
+
+// official tutorial
+import { Game } from './components/TicTacToe';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -35,7 +40,10 @@ root.render(
     // <ParentOfMemoComp3 />
     // <UseMemoSample />
     // <Clock />
-    <UseContextParent />
+    // <UseContextParent />
+    // <ImageUploader />
+    // <ImperativeParent />
+    <Game />
   // </React.StrictMode>
   // <h1>見出し</h1>
 );

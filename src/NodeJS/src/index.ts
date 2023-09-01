@@ -1,6 +1,7 @@
 import { access } from "node:fs/promises";
 // import { readFile, writeFile, appendFile } from "node:fs";
-import * as fs from "node:fs/promises";
+import * as fsp from "node:fs/promises";
+import * as fs from "node:fs"; // createReadStream
 import { existsSync, rmSync, appendFileSync } from "node:fs";
 import { promisify } from "node:util";
 import { request } from "undici"; // HTTP (3rd party)
@@ -30,7 +31,7 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
     console.log(typeof console.log); // function
     console.log(typeof null); // object
 
-    const obj : {
+    const obj: {
         key1: string;
         key2: number;
     } = {
@@ -41,12 +42,12 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
     console.log(obj);
 
 
-    const obj2 : any = {
+    const obj2: any = {
         foo: {
             bar: 'baz'
         },
         now: new Date(),
-        func: function() {
+        func: function () {
             console.log('function')
         }
     };
@@ -72,7 +73,7 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
     console.log(idx_obj);
 
     // . or [] でアクセス
-    const access_obj : any = {
+    const access_obj: any = {
         foo: 'hello',
         bar: {
             baz: 'world'
@@ -87,7 +88,7 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
 
     // Object.freeze()で最上位のオブジェクトを凍結しても
     // 下位のオブジェクトには代入できる. (オブジェクトはC言語のポインタと同じ)
-    const frozen_obj : any = {
+    const frozen_obj: any = {
         ice: 'cream'
     };
     Object.freeze(frozen_obj);
@@ -98,8 +99,8 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
 
 // ObjectとJSON
 {
-    const obj : any = {
-        foo: function() {
+    const obj: any = {
+        foo: function () {
             console.log('foo');
         },
         bar: 'bar'
@@ -107,7 +108,7 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
 
     // fooプロパティはJSONに変換できないので消えてしまう
     const jsonStr = JSON.stringify(obj);
-    
+
     console.log(obj);
     console.log(jsonStr);
 
@@ -125,7 +126,7 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
 
     type Person = { name: string; age: number };
 
-    const students : Array<Person> = [
+    const students: Array<Person> = [
         { name: 'Alice', age: 10 },
         { name: 'Bob', age: 20 },
         { name: 'Catherine', age: 30 }
@@ -162,7 +163,7 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
 
     /* prototypeを使う旧型の記述 */
     // コンストラクタ
-    function Person(name : string) {
+    function Person(name: string) {
         this.name = name;
     }
 
@@ -188,7 +189,7 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
         // });
 
         // Promise方式
-        fs.readFile(dataDir + "text.txt").then(file => {
+        fsp.readFile(dataDir + "text.txt").then(file => {
             console.log(file);
         }).catch(err => {
             console.error(err);
@@ -202,10 +203,10 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
         const backupFile = dataDir + `text-${Date.now()}`;
 
         // コールバックのネスト地獄なのでこの記述はダメ.
-        fs.readFile(dataDir + "text.txt").then(file => {
+        fsp.readFile(dataDir + "text.txt").then(file => {
             console.log(`read file: ${file}`);
-            fs.writeFile(backupFile, file).then(file => {
-                fs.chmod(backupFile, 0o400).then(file => {
+            fsp.writeFile(backupFile, file).then(file => {
+                fsp.chmod(backupFile, 0o400).then(file => {
                     console.log('done 2');
                 });
             }).catch(err => {
@@ -221,23 +222,21 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
     // 単純なコールバックでは, 非同期処理の順序は保証されない
     {
         // ファイルが存在すれば同期的にファイル削除
-        if (existsSync(dataDir + "unsequence_data.txt"))
-        {
+        if (existsSync(dataDir + "unsequence_data.txt")) {
             rmSync(dataDir + "unsequence_data.txt");
         }
 
         // 非同期で書き込み
         for (let i = 0; i < 100; i++) {
             const recordText = `write: ${i}\n`;
-            fs.appendFile(dataDir + "unsequence_data.txt", recordText).catch(err => {
+            fsp.appendFile(dataDir + "unsequence_data.txt", recordText).catch(err => {
                 console.error(`Failed to appendFile: ${err}`);
             });
         }
         console.log("done 3");
 
         // ファイルが存在すれば同期的にファイル削除
-        if (existsSync(dataDir + "sequence_data.txt"))
-        {
+        if (existsSync(dataDir + "sequence_data.txt")) {
             rmSync(dataDir + "sequence_data.txt");
         }
 
@@ -269,7 +268,7 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
                     reject(new Error("Promise reject error.")); // 失敗
                 }
             };
-            
+
             return new Promise(executor);
         };
 
@@ -301,9 +300,9 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
             // return Promise.resolve(T)
             const main = async (): Promise<string> => {
                 const backupFile = dataDir + `async_await_text-${Date.now()}`;
-                const data = await fs.readFile(dataDir + `text.txt`);
-                await fs.writeFile(backupFile, data);
-                await fs.chmod(backupFile, 0o400); // 読み取り専用
+                const data = await fsp.readFile(dataDir + `text.txt`);
+                await fsp.writeFile(backupFile, data);
+                await fsp.chmod(backupFile, 0o400); // 読み取り専用
                 return "async return value";
             };
 
@@ -370,7 +369,7 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
     // EventEmitterクラス
     {
         // EventEmitterクラスを継承して独自のイベントを扱うクラス
-        class MyEmitter extends EventEmitter {}
+        class MyEmitter extends EventEmitter { }
 
         const myEmitter = new MyEmitter();
 
@@ -393,5 +392,61 @@ import { EventEmitter, Writable, Readable, Duplex, Transform } from "node:events
         }, 1000);
 
         console.log("done 8");
+    }
+
+    // AsyncIterator
+    {
+        const dataDir: string = "/Users/inoueshinichi/Desktop/MyGithub/Book_TypeScript/data/"
+
+
+
+        // 少し待つ非同期関数
+        const sleep: any = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+        const this_ts_filename = "index.ts";
+        const this_ts_dirname = "/Users/inoueshinichi/Desktop/MyGithub/Book_TypeScript/src/NodeJS/src/";
+        const writeFileName: string = dataDir + `${this_ts_filename}-${Date.now()}`;
+
+        // ファイルを読み込むStreamを生成(64byteずつ)
+        const readStream: ReadableStream<any> = fs.createReadStream(this_ts_dirname + this_ts_filename,
+            { encoding: 'utf8', highWaterMark: 64 });
+
+        const write = async (chunk: Uint8Array) => {
+            // (Math.random() * 1000)ms 待つ
+            await sleep(Math.random() * 1000);
+            // ファイルに追記モードで書き込む
+            await fs.writeFile(writeFileName, chunk, { flag: 'a' });
+        }
+
+        let counter = 0;
+
+        /* AsyncIteratorなし */
+        // ファイルのデータを読み込むたびに実行されるリスナー
+        // readStream.on('data', async (chunk: Uint8Array) => {
+        //     console.log(counter, chunk);
+        //     counter++;
+
+        //     // バックアップファイルに書き出し
+        //     // await write(chunk); // エラー  code: 'ERR_INVALID_ARG_TYPE' 原因分からず.
+        // });
+
+        /* AsyncIteratorあり */
+        // ひどうきに発生するイベントを直列的に処理する(パフォーマンスは低)
+        for await (const chunk: Uint8Array of readStream) {
+            console.log(counter, chunk);
+            counter++;
+
+            // バックアップファイルに書き出し
+            // await write(chunk);
+        }
+
+        // ファイルの読み込みが終了した時に実行されるリスナー
+        readStream.on('close', () => {
+            console.log('close stream:');
+        });
+
+        // エラーハンドリング
+        readStream.on('error', (e: Error) => {
+            console.log('error', e);
+        });
     }
 }
