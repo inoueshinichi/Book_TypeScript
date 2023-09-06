@@ -17,9 +17,11 @@ import { Clock } from './components/Hook4_useEffect';
 import { UseContextParent } from './components/Hook4_useContext';
 import { ImageUploader } from './components/Hook5_useRef';
 import { ImperativeParent } from './components/Hook6_useImperativeHandle';
+import { Input } from './components/Hook7_customHook';
 
 // official tutorial
 import { Game } from './components/TicTacToe';
+import { ThinkingInReactApp } from './components/ThinkingInReact';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -43,7 +45,9 @@ root.render(
     // <UseContextParent />
     // <ImageUploader />
     // <ImperativeParent />
-    <Game />
+    // <Input />
+    // <Game />
+  <ThinkingInReactApp />
   // </React.StrictMode>
   // <h1>見出し</h1>
 );
