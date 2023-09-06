@@ -19,7 +19,7 @@ type BuzzProps = {
     onClick: () => void; // propsにonClickを追加
 };
 
-const Buzz = memo<BuzzProps>((props): JSX.Element => {
+const Buzz = memo<BuzzProps>((props: BuzzProps): JSX.Element => {
     const { isBuzz, onClick } = props;
     console.log(`Buzzが再描画されました. isBuzz=${isBuzz}`);
     return (

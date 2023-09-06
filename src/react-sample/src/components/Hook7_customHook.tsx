@@ -34,6 +34,6 @@ export const Input = (): JSX.Element => {
                 <p>Input: {text}</p>
             </div>
         </>
-    )
+    );
 }
 

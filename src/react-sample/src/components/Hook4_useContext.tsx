@@ -1,4 +1,5 @@
-// Contextから値を参照するためのフック
+// Contextから値を参照するためのフック useContext
+// ContextのProvider/Comsumerの代替手法
 
 import React, { useContext } from 'react';
 

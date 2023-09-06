@@ -33,7 +33,7 @@ type BuzzProps = {
 // Buzzはメモ化した関数コンポーネント
 // isBuzzがtrueの場合は, Buzzと表示し, それ以外は何もしない.
 // 親コンポーネントが再描画されても, isBuzzが変化しない限り, Buzzは再描画しない
-const Buzz = memo<BuzzProps>((props): JSX.Element => {
+const Buzz = memo<BuzzProps>((props: BuzzProps): JSX.Element => {
     const { isBuzz } = props;
     console.log(`Buzzが再描画されました. isBuzz=${isBuzz}`);
     return (

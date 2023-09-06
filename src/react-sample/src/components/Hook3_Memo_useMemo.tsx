@@ -20,7 +20,7 @@ export const UseMemoSample = (): JSX.Element => {
         // string[]配列用の更新関数
         setItems((prevItems: string[]) => {
             // 現在の入力値をitemsに追加する. 
-            return [...prevItems, text]; // string[]配列
+            return [...prevItems/* spread構文(コピー) */, text]; // string[]配列
         });
 
         // テキストボックスの中の値を空にする

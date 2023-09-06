@@ -1,4 +1,6 @@
-// useEffectによる副作用のためのフック
+// useEffectによる副作用のためのフック. 使用頻度高い
+// useEffectは描画後にフックが実行される
+// useLayoutEffectは描画前にフックが実行される
 
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 
@@ -43,7 +45,7 @@ export const Clock = () => {
     }, []);
 
     // localstorageから値を読み込むための副作用
-    // useEffect(非同期的): UI描画直後にチェックして変化があれば実行する.
+    // useEffect(同期的): UI描画直後にチェックして変化があれば実行する.
     // useLayoutEffect(同期的): UI描画直前にチェックして変化があれば実行する. (UIに影響をあたえる変数を扱うため同期的になる)
     /*useEffect*/useLayoutEffect(() => {
         const savedLocale = localStorage.getItem(KEY_LOCALE);

@@ -1,4 +1,6 @@
 // ミュータブルなデータの保持, DOMの参照を扱う useRef
+// 描画に関係のない変数を扱うことが目的
+// 使用頻度高い
 
 import React, { useState, useRef } from "react";
 
@@ -8,7 +10,7 @@ const UPLOAD_DELAY = 5000;
 
 export const ImageUploader = () => {
     // 隠されたinput要素にアクセスするためのref
-    const inputImageRef = useRef<HTMLInputElement | null>(null);
+    const inputImageRef = useRef</*<input>の仮想DOM*/HTMLInputElement | null>(null);
 
     // 選択されたファイルデータを保持するref
     const fileRef = useRef<File | null>(null);
@@ -23,7 +25,7 @@ export const ImageUploader = () => {
     };
 
     // ファイルが選択された後に呼ばれるコールバック
-    const onChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeImage = (e: React.ChangeEvent</*<input>の仮想DOM*/HTMLInputElement>) => {
         const files = e.target.files;
         if (files != null && files.length > 0) {
             // fileRef.currentに値を保持する
@@ -32,12 +34,12 @@ export const ImageUploader = () => {
         }
     };
 
-    // アップロードボタンがクリックされた時に呼ばれるコールバック
+    // アップロードボタンがクリックされた時に呼ばれるコールバック(非同期)
     const onClickUpload = async () => {
         if (fileRef.current != null) {
             // 通常は, ここでAPIを読んでファイルをサーバーにアップロードする
-            // ここでは擬似的に一定時間待つ
-            await sleep(UPLOAD_DELAY);
+        
+            await sleep(UPLOAD_DELAY); // ここでは擬似的に一定時間待つ
 
             // アプロードが成功した旨を表示するために, メッセージを書き換える
             setMessage(`${fileRef.current.name} has been successfully uploaded`);
