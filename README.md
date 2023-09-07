@@ -6,12 +6,6 @@
 + 書籍 https://gihyo.jp/book/2022/978-4-297-12747-3
 + サポートページ https://gihyo.jp/book/2022/978-4-297-12747-3/support
 
-## TypeScriptとReact/Next.jsで作る実践アプリケーション開発
-+ 書籍　https://gihyo.jp/book/2022/978-4-297-12916-3
-+ サポートページ https://gihyo.jp/book/2022/978-4-297-12916-3/support
-+ ソースコード1 https://github.com/gihyo-book/ts-nextbook-app
-+ ソースコード2 https://github.com/gihyo-book/ts-nextbook-json
-+ 正誤表 https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5DsuAjcbHuC38u3v4-rfnsmDthgSY4wrZiPvYNyAeuTYxLTzGUWiEgCD8vnv--w/pubhtml
 
 ## Version
 + Node.js v18.16.1
